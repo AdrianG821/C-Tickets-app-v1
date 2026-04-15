@@ -1,0 +1,59 @@
+﻿<Page x:Class="TicketsProject.ClientsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:TicketsProject"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="ClientsPage">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0">
+            <Button Click="BackButton"  Content="Back to the list" VerticalAlignment="Center" HorizontalAlignment="Right" Padding="5"/>
+            <TextBlock FontSize="22" FontWeight="Bold">Manage clients page</TextBlock>
+
+        </StackPanel>
+
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <StackPanel Grid.Row="0">
+                <WrapPanel>
+                    <TextBlock Padding="5">Add client</TextBlock>
+                    <TextBox x:Name="ClientsNameBox" Width="350" MaxLength="150" Padding="5" Text="Name" Tag="Name" GotFocus="RemovePlaceholder" LostFocus="AddPlaceholder"/>
+                    <TextBox x:Name="ClientsPhoneBox" Width="100" MaxLength="20" Padding="5" Text="Number" Tag="Number" GotFocus="RemovePlaceholder" LostFocus="AddPlaceholder"/>
+                    <TextBox x:Name="ClientsAddressBox" Width="350" MaxLength="150" Padding="5" Text="Address" Tag="Address" GotFocus="RemovePlaceholder" LostFocus="AddPlaceholder"/>
+                    <TextBox x:Name="ClientsEmailBox" Width="150" MaxLength="35" Padding="5" Text="Email" Tag="Email" GotFocus="RemovePlaceholder" LostFocus="AddPlaceholder"/>
+
+                    <Button Click="InsertClient"  Content="Add Client"/>
+                </WrapPanel>
+            </StackPanel>
+
+            <ListView Grid.Row="1" x:Name="ListViewClients" ItemsSource="{Binding ClientsClass}">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="ID" DisplayMemberBinding="{Binding ClientsId}"/>
+                        <GridViewColumn Header="Clients Name" DisplayMemberBinding="{Binding ClientsName}"/>
+                        <GridViewColumn Header="Address" DisplayMemberBinding="{Binding ClientsAddress}"/>
+                        <GridViewColumn Header="Phone number" DisplayMemberBinding="{Binding ClientsPhone}"/>
+                        <GridViewColumn Header="Email" DisplayMemberBinding="{Binding ClientsEmail}"/>
+                        <GridViewColumn Header="Active?" DisplayMemberBinding="{Binding ClientsActive}"/>
+                        <GridViewColumn Header="Created Date" DisplayMemberBinding="{Binding ClientsCreatedAt}"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+
+
+        </Grid>
+        
+    </Grid>
+</Page>
